@@ -1,3 +1,5 @@
+package Lesson4_task;
+
 import java.util.Scanner;
 
 public class Home4 {
