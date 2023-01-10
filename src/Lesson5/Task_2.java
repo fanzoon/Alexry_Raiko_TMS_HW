@@ -1,9 +1,11 @@
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+package Lesson5;
 
-public class Home5 {
 
+//   2. Шахматная доска
+//      Создать программу для раскраски шахматной доски с помощью цикла. Создать двумерный массив String'ов 8х8.
+//      С помощью циклов задать элементам циклам значения B(Black) или W(White).
+
+public class Task_2 {
     public static void main(String[] args) {
 
         String[][] twoDimArray = new String[8][8];
@@ -32,8 +34,5 @@ public class Home5 {
             }
             System.out.println();
         }
-
-
     }
-
 }
