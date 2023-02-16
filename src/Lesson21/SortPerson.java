@@ -54,11 +54,12 @@ public class SortPerson {
     }
 
     public void writePersonToFile(List<Person> listPerson) {
-        System.out.println("-------------------------------------------------------");
+        System.out.println("--------------------------------------------------------");
         System.out.println("Введите путь к файлу, в который следует записать данные:");
         Scanner scanner = new Scanner(System.in);
         String path = scanner.nextLine();
-        try (FileWriter writer = new FileWriter("src/Lesson21/person.txt")) {
+        File file = new File(path);
+        try (FileWriter writer = new FileWriter(file)) {
             writer.write("");
             for (Person x : listPerson) {
                 String text = x.getName() + "," + x.getLastName() + "," + x.getGender() + "," + x.getAge();
