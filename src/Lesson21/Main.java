@@ -29,12 +29,16 @@ Note:
 
 // Путь к файлу: src/Lesson21/person.txt
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-       SortPerson sortPerson = new SortPerson();
-       sortPerson.writePersonToFile(sortPerson.sortListPerson(sortPerson.readFileOfPersons()));
-       SortPerson.numberOfOverThirtyYearsOld(sortPerson.listPersonSort);
-       SortPerson.numberOfMen(sortPerson.listPersonSort);
-       SortPerson.numberOfWomen(sortPerson.listPersonSort);
+    List<Person> a = SortPerson.readFileOfPersons();
+    List<Person> b = SortPerson.sortListPerson(a);
+    SortPerson.writePersonToFile(b);
+
+    SortPerson.numberOfOverThirtyYearsOld(a);
+    SortPerson.numberOfMen(a);
+    SortPerson.numberOfWomen(a);
     }
 }

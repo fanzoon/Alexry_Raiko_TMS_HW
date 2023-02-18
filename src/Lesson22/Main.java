@@ -27,10 +27,13 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String path = scanner.nextLine();
         Map<String, Document> mapDocument = new HashMap<>();
+        FileReader fr = null;
+        BufferedReader reader = null;
 
         File file = new File("src/Lesson22/document_numbers");
-        try (FileReader fr = new FileReader(file);
-        BufferedReader reader = new BufferedReader(fr)) {
+        try {
+            fr = new FileReader(file);
+            reader = new BufferedReader(fr);
             String line = reader.readLine();
             while (line != null) {
                 String[] arrayString = line.split(",");
@@ -44,6 +47,9 @@ public class Main {
             }
         } catch (IOException e) {
             System.out.println("Файл c именем: " + path + " не найден");
+        } finally {
+            Objects.requireNonNull(fr).close();
+            Objects.requireNonNull(reader).close();
         }
 
         System.out.println("Неповторяющиеся номера контрактов в структуре данных ключ-значение:");

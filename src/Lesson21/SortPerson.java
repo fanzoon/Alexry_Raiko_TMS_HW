@@ -1,23 +1,25 @@
 package Lesson21;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class SortPerson {
-    List<Person> listPerson = new ArrayList<>();
-    List<Person> listPersonSort = new ArrayList<>();
 
-    public List<Person> readFileOfPersons() {
+
+
+
+    public static List<Person> readFileOfPersons() {
         System.out.println("Введите путь к файлу, из которого следует прочитать данные:");
         Scanner scanner = new Scanner(System.in);
         String path = scanner.nextLine();
+        List<Person> listPerson = new ArrayList<>();
         File file = new File(path);
-        try (FileReader fr = new FileReader(file);
-             BufferedReader reader = new BufferedReader(fr)) {
+        FileReader fr = null;
+        BufferedReader reader = null;
+        try {
+            fr = new FileReader(file);
+            reader = new BufferedReader(fr);
             String line = reader.readLine();
             while (line != null) {
                 String[] stringsPerson = line.split(",");
@@ -32,11 +34,22 @@ public class SortPerson {
             listPerson.forEach(System.out::println);
         } catch (IOException e) {
             System.out.println("Файл c именем: " + path + " не найден");
+        } finally {
+            try {
+                Objects.requireNonNull(fr).close();
+            } catch (IOException e) {
+                System.out.println("FileReader fr не закрыт");
+            }
+            try {
+                Objects.requireNonNull(reader).close();
+            } catch (IOException e) {
+                System.out.println("BufferedReader reader не закрыт");
+            }
         }
         return listPerson;
     }
 
-    public List<Person> sortListPerson(List<Person> anyListPerson) {
+    public static List<Person> sortListPerson(List<Person> anyListPerson) {
         Comparator<Person> comparator = (a, b) -> {
             if (!a.getName().equals(b.getName())) {
                 return a.getName().compareTo(b.getName());
@@ -45,6 +58,7 @@ public class SortPerson {
             }
         };
         System.out.println("after sorted:");
+        List<Person> listPersonSort;
         listPersonSort = anyListPerson
                 .stream()
                 .sorted(comparator)
@@ -53,7 +67,7 @@ public class SortPerson {
         return listPersonSort;
     }
 
-    public void writePersonToFile(List<Person> listPerson) {
+    public static void writePersonToFile(List<Person> listPerson) {
         System.out.println("--------------------------------------------------------");
         System.out.println("Введите путь к файлу, в который следует записать данные:");
         Scanner scanner = new Scanner(System.in);
