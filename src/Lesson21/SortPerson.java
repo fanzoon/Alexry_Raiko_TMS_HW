@@ -5,10 +5,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class SortPerson {
-
-
-
-
     public static List<Person> readFileOfPersons() {
         System.out.println("Введите путь к файлу, из которого следует прочитать данные:");
         Scanner scanner = new Scanner(System.in);
