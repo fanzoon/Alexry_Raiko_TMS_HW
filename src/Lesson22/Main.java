@@ -29,7 +29,6 @@ public class Main {
         Map<String, Document> mapDocument = new HashMap<>();
         FileReader fr = null;
         BufferedReader reader = null;
-
         File file = new File("src/Lesson22/document_numbers");
         try {
             fr = new FileReader(file);
@@ -48,14 +47,18 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Файл c именем: " + path + " не найден");
         } finally {
-            Objects.requireNonNull(fr).close();
-            Objects.requireNonNull(reader).close();
+            try {
+                fr.close();
+                reader.close();
+            }catch (IOException e) {
+                System.out.println("FileReader fr или BufferedReader reader не закрыт");
+            }
         }
 
         System.out.println("Неповторяющиеся номера контрактов в структуре данных ключ-значение:");
         for(Map.Entry<String, Document> pair : mapDocument.entrySet()) {
             String key = pair.getKey();
-            String value = String.valueOf(pair.getValue());
+            Document value = pair.getValue();
             System.out.println("key: " + key + "   " + "value: " + value);
         }
     }
