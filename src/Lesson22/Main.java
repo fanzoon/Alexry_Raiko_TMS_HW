@@ -22,14 +22,14 @@ import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         System.out.println("Введите путь к файлу:");
         Scanner scanner = new Scanner(System.in);
         String path = scanner.nextLine();
         Map<String, Document> mapDocument = new HashMap<>();
         FileReader fr = null;
         BufferedReader reader = null;
-        File file = new File("src/Lesson22/document_numbers");
+        File file = new File(path);
         try {
             fr = new FileReader(file);
             reader = new BufferedReader(fr);
@@ -44,22 +44,37 @@ public class Main {
                 mapDocument.put(arrayString[0], document);
                 line = reader.readLine();
             }
-        } catch (IOException e) {
+
+            System.out.println("Неповторяющиеся номера контрактов в структуре данных ключ-значение:");
+            for (Map.Entry<String, Document> pair : mapDocument.entrySet()) {
+                String key = pair.getKey();
+                Document value = pair.getValue();
+                System.out.println("key: " + key + "   " + "value: " + value);
+            }
+        }catch (IOException e) {
             System.out.println("Файл c именем: " + path + " не найден");
         } finally {
             try {
-                fr.close();
-                reader.close();
-            }catch (IOException e) {
+                if (fr != null) {
+                    fr.close();
+                }
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
                 System.out.println("FileReader fr или BufferedReader reader не закрыт");
             }
         }
-
-        System.out.println("Неповторяющиеся номера контрактов в структуре данных ключ-значение:");
-        for(Map.Entry<String, Document> pair : mapDocument.entrySet()) {
-            String key = pair.getKey();
-            Document value = pair.getValue();
-            System.out.println("key: " + key + "   " + "value: " + value);
-        }
     }
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -32,8 +32,12 @@ public class SortPerson {
             System.out.println("Файл c именем: " + path + " не найден");
         } finally {
             try {
-                fr.close();
-                reader.close();
+                if (fr != null) {
+                    fr.close();
+                }
+                if (reader != null) {
+                    reader.close();
+                }
             }catch (IOException e) {
                 System.out.println("FileReader fr или BufferedReader reader не закрыт");
             }
