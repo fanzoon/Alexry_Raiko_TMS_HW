@@ -1,3 +1,5 @@
+package Lesson4_task;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
