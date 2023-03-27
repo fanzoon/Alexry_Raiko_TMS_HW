@@ -1,7 +1,8 @@
 package Lesson26_2_FactoryMethod;
 
 public class Service {
-    static TankFactory createTankOfType(String typeOfTank) {
+
+    static TankFactory createTankFactory(String typeOfTank) {
         if (typeOfTank.equalsIgnoreCase("heavy")) {
             return new HeavyTankFactory();
         } else if (typeOfTank.equalsIgnoreCase("medium")) {
@@ -9,7 +10,7 @@ public class Service {
         } else if (typeOfTank.equalsIgnoreCase("light")) {
             return new LightTankFactory();
         }  else {
-            throw new  RuntimeException(typeOfTank + " is unknown type of tank");
+            return (TankFactory) new Object();
         }
     }
 }
